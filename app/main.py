@@ -1,9 +1,11 @@
 from fastapi import FastAPI
 
+from app.core.config import settings
+
 
 app = FastAPI(
-    title="ARMOR Main Backend API",
-    version="0.1.0",
+    title=settings.app_name,
+    version=settings.app_version,
     description="ARMOR AI Safety Gateway"
 )
 
@@ -11,8 +13,8 @@ app = FastAPI(
 @app.get("/")
 def root():
     return {
-        "service": "ARMOR Main Backend",
-        "version": "0.1.0",
+        "service": settings.app_name,
+        "version": settings.app_version,
         "status": "running"
     }
 
