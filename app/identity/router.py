@@ -3,6 +3,8 @@ from fastapi import APIRouter
 from app.schema.identity import (
     IdentityEnrollRequest,
     IdentityEnrollResponse,
+    IdentityVerifyRequest,
+    IdentityVerifyResponse
 )
 
 router = APIRouter(
@@ -19,4 +21,16 @@ def enroll_identity(request: IdentityEnrollRequest):
         identity_id=request.identity_id,
         status="enrolled",
         message="Identity enrolled successfully"
+    )
+
+@router.post(
+    "/verify",
+    response_model=IdentityVerifyResponse
+)
+def verify_identity(request: IdentityVerifyRequest):
+    return IdentityVerifyResponse(
+        match=True,
+        confidence=0.95,
+        identity_id=request.identity_id,
+        status="verified"
     )
