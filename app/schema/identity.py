@@ -23,3 +23,11 @@ class IdentityProfileResponse(BaseModel):
     identity_id: str
     status: str
     enrolled: bool
+
+class IdentityLockRequest(BaseModel):
+    identity_id: str
+
+class IdentityLockResponse(BaseModel):
+    identity_id: str
+    status: str
+    message: str

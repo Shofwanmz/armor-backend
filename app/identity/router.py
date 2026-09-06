@@ -6,6 +6,8 @@ from app.schema.identity import (
     IdentityVerifyRequest,
     IdentityVerifyResponse,
     IdentityProfileResponse,
+    IdentityLockRequest,
+    IdentityLockResponse,
 )
 
 router = APIRouter(
@@ -45,4 +47,15 @@ def get_identity_profile():
         identity_id="ARMOR-001",
         status="active",
         enrolled=True
+    )
+
+@router.post(
+    "/lock",
+    response_model=IdentityLockResponse
+)
+def lock_identity(request: IdentityLockRequest):
+    return IdentityLockResponse(
+        identity_id=request.identity_id,
+        status="locked",
+        message="Identity locked successfully"
     )
