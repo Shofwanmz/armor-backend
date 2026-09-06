@@ -4,7 +4,8 @@ from app.schema.identity import (
     IdentityEnrollRequest,
     IdentityEnrollResponse,
     IdentityVerifyRequest,
-    IdentityVerifyResponse
+    IdentityVerifyResponse,
+    IdentityProfileResponse,
 )
 
 router = APIRouter(
@@ -33,4 +34,15 @@ def verify_identity(request: IdentityVerifyRequest):
         confidence=0.95,
         identity_id=request.identity_id,
         status="verified"
+    )
+
+@router.get(
+    "/profile",
+    response_model=IdentityProfileResponse
+)
+def get_identity_profile():
+    return IdentityProfileResponse(
+        identity_id="ARMOR-001",
+        status="active",
+        enrolled=True
     )

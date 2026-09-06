@@ -19,4 +19,7 @@ class IdentityVerifyResponse(BaseModel):
     identity_id: str
     status: str
 
-
+class IdentityProfileResponse(BaseModel):
+    identity_id: str
+    status: str
+    enrolled: bool
