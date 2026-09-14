@@ -4,6 +4,7 @@ from app.core.config import settings
 from app.identity.router import router as identity_router
 from app.intent.router import router as intent_router
 from app.consent.router import router as consent_router
+from app.risk.router import router as risk_router
 
 app = FastAPI(
     title=settings.app_name,
@@ -14,6 +15,7 @@ app = FastAPI(
 app.include_router(identity_router)
 app.include_router(intent_router)
 app.include_router(consent_router)
+app.include_router(risk_router)
 
 @app.get("/")
 def root():
